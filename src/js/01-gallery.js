@@ -32,13 +32,6 @@ const galleryMarkup = galleryItems.reduce((acc, item) => {
 
 galleryRef.insertAdjacentHTML("beforeend", galleryMarkup);
 
-// galleryRef.addEventListener("click", lightBox);
-
-// function lightBox(event) {
-//     event.preventDefault();
-//     const img = event.target.dataset.source;
-// }
-
 const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250
 });
