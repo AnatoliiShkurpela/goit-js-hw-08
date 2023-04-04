@@ -25,6 +25,7 @@ function onFormSubmit(event) {
     event.currentTarget.reset();
 };
 
+
 function populateAllData() {
     const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
     const email = document.querySelector('.feedback-form input');
