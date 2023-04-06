@@ -1,43 +1,43 @@
-import throttle from 'lodash.throttle'; 
-
-
-const STORAGE_KEY = 'feedback-form-state';
+import throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
-const allData = {};
+const emailInput = form.querySelector('input[name="email"]');
+const messageInput = form.querySelector('textarea[name="message"]');
+const FEEDBACK_FORM_STATE = 'feedback-form-state'
 
-form.addEventListener('submit', onFormSubmit);
-form.addEventListener('input', throttle(onFormData, 500));
+const save = throttle(() => {
+  const state = {
+    email: emailInput.value,
+    message: messageInput.value,
+  };
+  localStorage.setItem(FEEDBACK_FORM_STATE, JSON.stringify(state));
+}, 1000);
 
-function onFormData(event) {
-    allData[event.target.name] = event.target.value;   
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(allData));
+
+form.addEventListener('input', save);
+
+
+const saveEl = localStorage.getItem(FEEDBACK_FORM_STATE);
+if (saveEl) {
+  const state = JSON.parse(saveEl);
+  emailInput.value = state.email;
+  messageInput.value = state.message;
 }
 
-function onFormSubmit(event) {
-    event.preventDefault();    
-    localStorage.removeItem(STORAGE_KEY);
-    const allElements = event.currentTarget.elements;
-    const formAll = {
-        email: allElements.email.value,
-        password: allElements.message.value,
-    };
-    console.log(formAll);
-    event.currentTarget.reset();
-};
-
-function populateAllData() {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    const email = document.querySelector('.feedback-form input');
-    const message = document.querySelector('.feedback-form textarea');
-    if (data.email) {
-      email.value = data.email;
-    };
-    if (data.message) {
-      message.value = data.message;
-    };
-};
-populateAllData();
-
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!emailInput.value || !messageInput.value) {
+    alert('Please fill in all fields!');
+    return;
+  }
+  localStorage.removeItem(FEEDBACK_FORM_STATE);  
+  const state = {
+    email: emailInput.value,
+    message: messageInput.value,
+  };
+    console.log(state); 
+    form.reset();
+    
+});
 
 
 
