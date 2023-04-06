@@ -12,10 +12,8 @@ const galleryRef = document.querySelector(".gallery");
 const createGalleryItemMarkup = ({ preview, original, description }) => {
   return `
     <li class="gallery__item">
-      <a
-        class="gallery__link"
-        href="${original}"
-      >
+      <a class="gallery__link"
+        href="${original}">
         <img
           class="gallery__image"
           src="${preview}"
@@ -33,8 +31,9 @@ const galleryMarkup = galleryItems.reduce((acc, item) => {
 galleryRef.insertAdjacentHTML("beforeend", galleryMarkup);
 
 
-const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt', captionPosition: 'bottom', captionDelay: 250
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
 });
 
 // console.log(galleryItems);
