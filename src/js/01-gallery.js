@@ -9,26 +9,22 @@ import { galleryItems } from './gallery-items';
 
 const galleryRef = document.querySelector(".gallery");
 
-const createGalleryItemMarkup = ({ preview, original, description }) => {
-  return `
-    <li class="gallery__item">
-      <a class="gallery__link"
-        href="${original}">
-        <img
-          class="gallery__image"
-          src="${preview}"
-          data-source="${original}"
-          alt="${description}"
-        />
-      </a>
-    </li>
-  `;
-};
-const galleryMarkup = galleryItems.reduce((acc, item) => {
-  return acc + createGalleryItemMarkup(item);
-}, "");
+const galleryMarcup = galleryItems.map(({ preview, original, description }) => {
+    return `<li class="gallery__item">
+<a class="gallery__link"
+    href= "${original}">
+    <img
+    class="gallery__image"
+    src= "${preview}"
+    alt= "${description}"
+    />
+</a>
+</li>`
+}).join('');
 
-galleryRef.insertAdjacentHTML("beforeend", galleryMarkup);
+galleryRef.insertAdjacentHTML('beforeend', galleryMarcup)
+
+console.log(galleryItems);
 
 
 const lightbox = new SimpleLightbox(".gallery a", {
@@ -36,4 +32,4 @@ const lightbox = new SimpleLightbox(".gallery a", {
   captionDelay: 250,
 });
 
-// console.log(galleryItems);
+
