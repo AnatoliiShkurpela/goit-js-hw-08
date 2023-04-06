@@ -26,7 +26,8 @@ galleryRef.insertAdjacentHTML('beforeend', galleryMarcup)
 
 console.log(galleryItems);
 
-const lightbox = new SimpleLightbox(".gallery a", {
+new SimpleLightbox(".gallery a", {
+  captionPosition: 'bottom',
   captionsData: "alt",
   captionDelay: 250,
 });
