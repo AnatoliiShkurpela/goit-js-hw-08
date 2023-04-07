@@ -8,8 +8,9 @@ const VIDEO_CURRENT_TIME = 'videoplayer-current-time';
 
 player.on('timeupdate', throttle(function(data) {
   const time = data.seconds;
+  const deleyTime = 1000;
   localStorage.setItem(VIDEO_CURRENT_TIME, time);
-}, 1000));
+}, deleyTime));
 
 const savedTime = localStorage.getItem(VIDEO_CURRENT_TIME);
 if (savedTime) {

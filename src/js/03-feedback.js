@@ -10,7 +10,7 @@ const save = throttle(() => {
     message: messageInput.value,
   };
   localStorage.setItem(FEEDBACK_FORM_STATE, JSON.stringify(state));
-}, 1000);
+}, 500);
 
 
 form.addEventListener('input', save);

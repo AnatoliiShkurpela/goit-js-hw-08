@@ -9,7 +9,7 @@ import { galleryItems } from './gallery-items';
 
 const galleryRef = document.querySelector(".gallery");
 
-const galleryMarcup = galleryItems.map(({ preview, original, description }) => {
+const galleryMarkup = galleryItems.map(({ preview, original, description }) => {
     return `<li class="gallery__item">
 <a class="gallery__link"
     href= "${original}">
@@ -22,7 +22,7 @@ const galleryMarcup = galleryItems.map(({ preview, original, description }) => {
 </li>`
 }).join('');
 
-galleryRef.insertAdjacentHTML('beforeend', galleryMarcup)
+galleryRef.insertAdjacentHTML('beforeend', galleryMarkup)
 
 console.log(galleryItems);
 
